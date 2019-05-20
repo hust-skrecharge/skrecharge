@@ -3,9 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SKR_User", "SKR_User\SKR_User.csproj", "{7613A3EE-C89D-431D-85BE-8B92FF7C7E86}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SKR_User.Tests", "SKR_User.Tests\SKR_User.Tests.csproj", "{A5B1D281-E212-4ECA-8BB1-86CF2766E6A9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SKRUSER", "SKRUSER\SKRUSER.csproj", "{9955D2ED-DE01-45DB-A8FF-BB18BE65571A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7613A3EE-C89D-431D-85BE-8B92FF7C7E86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7613A3EE-C89D-431D-85BE-8B92FF7C7E86}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7613A3EE-C89D-431D-85BE-8B92FF7C7E86}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7613A3EE-C89D-431D-85BE-8B92FF7C7E86}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A5B1D281-E212-4ECA-8BB1-86CF2766E6A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A5B1D281-E212-4ECA-8BB1-86CF2766E6A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A5B1D281-E212-4ECA-8BB1-86CF2766E6A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A5B1D281-E212-4ECA-8BB1-86CF2766E6A9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9955D2ED-DE01-45DB-A8FF-BB18BE65571A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9955D2ED-DE01-45DB-A8FF-BB18BE65571A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9955D2ED-DE01-45DB-A8FF-BB18BE65571A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9955D2ED-DE01-45DB-A8FF-BB18BE65571A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7613A3EE-C89D-431D-85BE-8B92FF7C7E86}</ProjectGuid>
+    <ProjectGuid>{9955D2ED-DE01-45DB-A8FF-BB18BE65571A}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SKR_User</RootNamespace>
-    <AssemblyName>SKR_User</AssemblyName>
+    <RootNamespace>SKRUSER</RootNamespace>
+    <AssemblyName>SKRUSER</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -172,19 +172,15 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\RegController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AdminBasic.cs" />
     <Compile Include="Models\BuildingInfo.cs" />
     <Compile Include="Models\FeedBack.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LiuYan.cs" />
     <Compile Include="Models\LogInfo.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\logrfid.cs" />
     <Compile Include="Models\PileInfo.cs" />
     <Compile Include="Models\RFIDInfo.cs" />
     <Compile Include="Models\SKRDB.cs" />
@@ -194,62 +190,40 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\all.css" />
-    <Content Include="Content\base.css" />
+    <Content Include="App_Data\SKRecharge.mdf" />
+    <Content Include="App_Data\SKRecharge_log.ldf">
+      <DependentUpon>SKRecharge.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\loaders.min.css" />
-    <Content Include="Content\loading.css" />
-    <Content Include="Content\mui.min.css" />
-    <Content Include="Content\mui.picker.css" />
-    <Content Include="Content\mui.picker.min.css" />
-    <Content Include="Content\page.css" />
-    <Content Include="Content\swiper.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="fonts\iconfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="fonts\iconfont.eot" />
-    <Content Include="fonts\iconfont.ttf" />
-    <Content Include="fonts\iconfont.woff" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\hmt.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.8.3.min.js" />
-    <Content Include="Scripts\jquery.min.js" />
-    <Content Include="Scripts\jquery.SuperSlide.2.1.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\mui.min.js" />
-    <Content Include="Scripts\mui.picker.min.js" />
-    <Content Include="Scripts\others.js" />
-    <Content Include="Scripts\rem.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\shopcar.js" />
-    <Content Include="Scripts\swiper.jquery.min.js" />
-    <Content Include="Scripts\swiper.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Views\account.html" />
     <Content Include="Views\activate.html" />
     <Content Include="Views\center.html" />
     <Content Include="Views\confirm.html" />
     <Content Include="Views\login.html" />
-    <Content Include="Views\mima.html" />
     <Content Include="Views\order.html" />
     <Content Include="Views\payment.html" />
     <Content Include="Views\recharge.html" />
     <Content Include="Views\register.html" />
     <Content Include="Views\search.html" />
-    <Content Include="Views\search\search.html" />
     <Content Include="Views\submit-order.html" />
     <Content Include="Views\verification.html" />
     <Content Include="Views\xiugai.html" />
@@ -289,13 +263,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\search\Search.cshtml" />
-    <Content Include="Views\search\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="Views\User\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -320,9 +289,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>63305</DevelopmentServerPort>
+          <DevelopmentServerPort>53335</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:63305/</IISUrl>
+          <IISUrl>http://localhost:53335/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
