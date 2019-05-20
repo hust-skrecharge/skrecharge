@@ -1,0 +1,533 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SKRechargeModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdminBasic">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="int" Nullable="false" />
+          <Property Name="AdminName" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="10" />
+          <Property Name="SuperAdmin" Type="int" />
+          <Property Name="AdminImage" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“SKRecharge.dbo.BuildingInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="BuildingInfo">
+          <Key>
+            <PropertyRef Name="DistrictID" />
+          </Key>
+          <Property Name="DistrictID" Type="int" Nullable="false" />
+          <Property Name="ChargingNum" Type="int" />
+          <Property Name="OccupiedNum" Type="int" />
+          <Property Name="DamagedNum" Type="int" />
+          <Property Name="TotalNum" Type="int" />
+          <Property Name="FreeNum" Type="int" />
+          <Property Name="BuildingID" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“SKRecharge.dbo.FeedBack”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="FeedBack">
+          <Key>
+            <PropertyRef Name="FeedbackID" />
+            <PropertyRef Name="PileId" />
+          </Key>
+          <Property Name="FeedbackID" Type="int" Nullable="false" />
+          <Property Name="Damagetype" Type="int" />
+          <Property Name="PileId" Type="int" Nullable="false" />
+          <Property Name="EngineerReback" Type="varchar" MaxLength="50" />
+          <Property Name="Occupiedtype" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“SKRecharge.dbo.LiuYan”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="LiuYan">
+          <Key>
+            <PropertyRef Name="LiuYanID" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="CreateTime" />
+          </Key>
+          <Property Name="LiuYanID" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="Content" Type="varchar" MaxLength="500" />
+          <Property Name="CreateTime" Type="smalldatetime" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“SKRecharge.dbo.LogInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="LogInfo">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="int" Nullable="false" />
+          <Property Name="EPC" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="UserType" Type="int" />
+          <Property Name="InTIME" Type="datetime" />
+          <Property Name="OutTime" Type="datetime" />
+          <Property Name="UsageTime" Type="time" Precision="7" />
+          <Property Name="PaySum" Type="float" />
+          <Property Name="DistrictID" Type="int" />
+          <Property Name="PileID" Type="int" />
+          <Property Name="UserFrequence" Type="int" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="PriceRate" Type="float" />
+          <Property Name="BuildingID" Type="int" />
+        </EntityType>
+        <EntityType Name="logrfid">
+          <Key>
+            <PropertyRef Name="ReadID" />
+          </Key>
+          <Property Name="EPC ID" Type="varchar" MaxLength="50" />
+          <Property Name="count" Type="bigint" />
+          <Property Name="wire" Type="int" />
+          <Property Name="ReadID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6013: 表/视图“SKRecharge.dbo.PayInfo”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="PayInfo">
+          <Property Name="OrderID" Type="int" />
+          <Property Name="UserID" Type="int" />
+          <Property Name="DistrictID" Type="int" />
+          <Property Name="PileID" Type="int" />
+          <Property Name="PaySum" Type="float" />
+          <Property Name="InTime" Type="datetime" />
+          <Property Name="OutTime" Type="datetime" />
+          <Property Name="BuildingID" Type="int" />
+          <Property Name="UsageTime" Type="time" Precision="7" />
+        </EntityType>-->
+        <!--生成过程中发现错误:
+警告 6013: 表/视图“SKRecharge.dbo.PayStandard”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="PayStandard">
+          <Property Name="UserType" Type="int" />
+          <Property Name="PriceRate" Type="int" />
+          <Property Name="TimePeriod" Type="int" />
+        </EntityType>-->
+        <!--生成过程中发现错误:
+警告 6013: 表/视图“SKRecharge.dbo.PileBasic”未定义主键，并且无法推断有效的主键。已排除了此表/视图。若要使用实体，将需要检查您的架构、添加正确的键并取消对实体的注释。
+        <EntityType Name="PileBasic">
+          <Property Name="DistrictID" Type="int" />
+          <Property Name="PileID" Type="int" />
+          <Property Name="ReaderID" Type="int" />
+          <Property Name="BuildingID" Type="int" />
+        </EntityType>-->
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“SKRecharge.dbo.PileInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="PileInfo">
+          <Key>
+            <PropertyRef Name="DistrictID" />
+            <PropertyRef Name="PileID" />
+          </Key>
+          <Property Name="DistrictID" Type="int" Nullable="false" />
+          <Property Name="PileID" Type="int" Nullable="false" />
+          <Property Name="OccupiedType" Type="int" />
+          <Property Name="ChargingType" Type="int" />
+          <Property Name="DamagedType" Type="int" />
+          <Property Name="UsageTimes" Type="int" />
+          <Property Name="BuildingID" Type="int" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“SKRecharge.dbo.RFIDInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="RFIDInfo">
+          <Key>
+            <PropertyRef Name="TID" />
+            <PropertyRef Name="EPC" />
+            <PropertyRef Name="User" />
+          </Key>
+          <Property Name="TID" Type="int" Nullable="false" />
+          <Property Name="EPC" Type="int" Nullable="false" />
+          <Property Name="User" Type="int" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“SKRecharge.dbo.UserBalance”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="UserBalance">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="Balance" Type="float" />
+          <Property Name="TotalBill" Type="float" />
+        </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“SKRecharge.dbo.UserBasic”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="UserBasic">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="EPC" Type="int" />
+          <Property Name="UserType" Type="int" />
+          <Property Name="RegTime" Type="datetime" />
+          <Property Name="UserImage" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="SKRechargeModelStoreContainer">
+          <EntitySet Name="AdminBasic" EntityType="Self.AdminBasic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="logrfid" EntityType="Self.logrfid" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BuildingInfo" EntityType="Self.BuildingInfo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [BuildingInfo].[DistrictID] AS [DistrictID], 
+    [BuildingInfo].[ChargingNum] AS [ChargingNum], 
+    [BuildingInfo].[OccupiedNum] AS [OccupiedNum], 
+    [BuildingInfo].[DamagedNum] AS [DamagedNum], 
+    [BuildingInfo].[TotalNum] AS [TotalNum], 
+    [BuildingInfo].[FreeNum] AS [FreeNum], 
+    [BuildingInfo].[BuildingID] AS [BuildingID]
+    FROM [dbo].[BuildingInfo] AS [BuildingInfo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="FeedBack" EntityType="Self.FeedBack" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [FeedBack].[FeedbackID] AS [FeedbackID], 
+    [FeedBack].[Damagetype] AS [Damagetype], 
+    [FeedBack].[PileId] AS [PileId], 
+    [FeedBack].[EngineerReback] AS [EngineerReback], 
+    [FeedBack].[Occupiedtype] AS [Occupiedtype]
+    FROM [dbo].[FeedBack] AS [FeedBack]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="LiuYan" EntityType="Self.LiuYan" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LiuYan].[LiuYanID] AS [LiuYanID], 
+    [LiuYan].[UserId] AS [UserId], 
+    [LiuYan].[Content] AS [Content], 
+    [LiuYan].[CreateTime] AS [CreateTime]
+    FROM [dbo].[LiuYan] AS [LiuYan]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="LogInfo" EntityType="Self.LogInfo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [LogInfo].[LogID] AS [LogID], 
+    [LogInfo].[EPC] AS [EPC], 
+    [LogInfo].[UserID] AS [UserID], 
+    [LogInfo].[UserType] AS [UserType], 
+    [LogInfo].[InTIME] AS [InTIME], 
+    [LogInfo].[OutTime] AS [OutTime], 
+    [LogInfo].[UsageTime] AS [UsageTime], 
+    [LogInfo].[PaySum] AS [PaySum], 
+    [LogInfo].[DistrictID] AS [DistrictID], 
+    [LogInfo].[PileID] AS [PileID], 
+    [LogInfo].[UserFrequence] AS [UserFrequence], 
+    [LogInfo].[OrderID] AS [OrderID], 
+    [LogInfo].[PriceRate] AS [PriceRate], 
+    [LogInfo].[BuildingID] AS [BuildingID]
+    FROM [dbo].[LogInfo] AS [LogInfo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="PileInfo" EntityType="Self.PileInfo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [PileInfo].[DistrictID] AS [DistrictID], 
+    [PileInfo].[PileID] AS [PileID], 
+    [PileInfo].[OccupiedType] AS [OccupiedType], 
+    [PileInfo].[ChargingType] AS [ChargingType], 
+    [PileInfo].[DamagedType] AS [DamagedType], 
+    [PileInfo].[UsageTimes] AS [UsageTimes], 
+    [PileInfo].[BuildingID] AS [BuildingID]
+    FROM [dbo].[PileInfo] AS [PileInfo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="RFIDInfo" EntityType="Self.RFIDInfo" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [RFIDInfo].[TID] AS [TID], 
+    [RFIDInfo].[EPC] AS [EPC], 
+    [RFIDInfo].[User] AS [User]
+    FROM [dbo].[RFIDInfo] AS [RFIDInfo]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UserBalance" EntityType="Self.UserBalance" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UserBalance].[UserID] AS [UserID], 
+    [UserBalance].[Balance] AS [Balance], 
+    [UserBalance].[TotalBill] AS [TotalBill]
+    FROM [dbo].[UserBalance] AS [UserBalance]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UserBasic" EntityType="Self.UserBasic" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UserBasic].[UserID] AS [UserID], 
+    [UserBasic].[UserName] AS [UserName], 
+    [UserBasic].[Password] AS [Password], 
+    [UserBasic].[EPC] AS [EPC], 
+    [UserBasic].[UserType] AS [UserType], 
+    [UserBasic].[RegTime] AS [RegTime], 
+    [UserBasic].[UserImage] AS [UserImage]
+    FROM [dbo].[UserBasic] AS [UserBasic]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SKRechargeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AdminBasic">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="Int32" Nullable="false" />
+          <Property Name="AdminName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="SuperAdmin" Type="Int32" />
+          <Property Name="AdminImage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="logrfid">
+          <Key>
+            <PropertyRef Name="ReadID" />
+          </Key>
+          <Property Name="EPC_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="count" Type="Int64" />
+          <Property Name="wire" Type="Int32" />
+          <Property Name="ReadID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+        </EntityType>
+        <EntityType Name="BuildingInfo">
+          <Key>
+            <PropertyRef Name="DistrictID" />
+          </Key>
+          <Property Name="DistrictID" Type="Int32" Nullable="false" />
+          <Property Name="ChargingNum" Type="Int32" />
+          <Property Name="OccupiedNum" Type="Int32" />
+          <Property Name="DamagedNum" Type="Int32" />
+          <Property Name="TotalNum" Type="Int32" />
+          <Property Name="FreeNum" Type="Int32" />
+          <Property Name="BuildingID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="FeedBack">
+          <Key>
+            <PropertyRef Name="FeedbackID" />
+            <PropertyRef Name="PileId" />
+          </Key>
+          <Property Name="FeedbackID" Type="Int32" Nullable="false" />
+          <Property Name="Damagetype" Type="Int32" />
+          <Property Name="PileId" Type="Int32" Nullable="false" />
+          <Property Name="EngineerReback" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Occupiedtype" Type="Int32" />
+        </EntityType>
+        <EntityType Name="LiuYan">
+          <Key>
+            <PropertyRef Name="LiuYanID" />
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="CreateTime" />
+          </Key>
+          <Property Name="LiuYanID" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="Content" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="0" />
+        </EntityType>
+        <EntityType Name="LogInfo">
+          <Key>
+            <PropertyRef Name="LogID" />
+          </Key>
+          <Property Name="LogID" Type="Int32" Nullable="false" />
+          <Property Name="EPC" Type="Int32" />
+          <Property Name="UserID" Type="Int32" />
+          <Property Name="UserType" Type="Int32" />
+          <Property Name="InTIME" Type="DateTime" Precision="3" />
+          <Property Name="OutTime" Type="DateTime" Precision="3" />
+          <Property Name="UsageTime" Type="Time" Precision="7" />
+          <Property Name="PaySum" Type="Double" />
+          <Property Name="DistrictID" Type="Int32" />
+          <Property Name="PileID" Type="Int32" />
+          <Property Name="UserFrequence" Type="Int32" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="PriceRate" Type="Double" />
+          <Property Name="BuildingID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PileInfo">
+          <Key>
+            <PropertyRef Name="DistrictID" />
+            <PropertyRef Name="PileID" />
+          </Key>
+          <Property Name="DistrictID" Type="Int32" Nullable="false" />
+          <Property Name="PileID" Type="Int32" Nullable="false" />
+          <Property Name="OccupiedType" Type="Int32" />
+          <Property Name="ChargingType" Type="Int32" />
+          <Property Name="DamagedType" Type="Int32" />
+          <Property Name="UsageTimes" Type="Int32" />
+          <Property Name="BuildingID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="RFIDInfo">
+          <Key>
+            <PropertyRef Name="TID" />
+            <PropertyRef Name="EPC" />
+            <PropertyRef Name="User" />
+          </Key>
+          <Property Name="TID" Type="Int32" Nullable="false" />
+          <Property Name="EPC" Type="Int32" Nullable="false" />
+          <Property Name="User" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserBalance">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="Balance" Type="Double" />
+          <Property Name="TotalBill" Type="Double" />
+        </EntityType>
+        <EntityType Name="UserBasic">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EPC" Type="Int32" />
+          <Property Name="UserType" Type="Int32" />
+          <Property Name="RegTime" Type="DateTime" Precision="3" />
+          <Property Name="UserImage" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="SKRechargeEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AdminBasics" EntityType="Self.AdminBasic" />
+          <EntitySet Name="logrfids" EntityType="Self.logrfid" />
+          <EntitySet Name="BuildingInfoes" EntityType="Self.BuildingInfo" />
+          <EntitySet Name="FeedBacks" EntityType="Self.FeedBack" />
+          <EntitySet Name="LiuYans" EntityType="Self.LiuYan" />
+          <EntitySet Name="LogInfoes" EntityType="Self.LogInfo" />
+          <EntitySet Name="PileInfoes" EntityType="Self.PileInfo" />
+          <EntitySet Name="RFIDInfoes" EntityType="Self.RFIDInfo" />
+          <EntitySet Name="UserBalances" EntityType="Self.UserBalance" />
+          <EntitySet Name="UserBasics" EntityType="Self.UserBasic" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SKRechargeModelStoreContainer" CdmEntityContainer="SKRechargeEntities1">
+          <EntitySetMapping Name="AdminBasics">
+            <EntityTypeMapping TypeName="SKRechargeModel.AdminBasic">
+              <MappingFragment StoreEntitySet="AdminBasic">
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="SuperAdmin" ColumnName="SuperAdmin" />
+                <ScalarProperty Name="AdminImage" ColumnName="AdminImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logrfids">
+            <EntityTypeMapping TypeName="SKRechargeModel.logrfid">
+              <MappingFragment StoreEntitySet="logrfid">
+                <ScalarProperty Name="EPC_ID" ColumnName="EPC ID" />
+                <ScalarProperty Name="count" ColumnName="count" />
+                <ScalarProperty Name="wire" ColumnName="wire" />
+                <ScalarProperty Name="ReadID" ColumnName="ReadID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BuildingInfoes">
+            <EntityTypeMapping TypeName="SKRechargeModel.BuildingInfo">
+              <MappingFragment StoreEntitySet="BuildingInfo">
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+                <ScalarProperty Name="ChargingNum" ColumnName="ChargingNum" />
+                <ScalarProperty Name="OccupiedNum" ColumnName="OccupiedNum" />
+                <ScalarProperty Name="DamagedNum" ColumnName="DamagedNum" />
+                <ScalarProperty Name="TotalNum" ColumnName="TotalNum" />
+                <ScalarProperty Name="FreeNum" ColumnName="FreeNum" />
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeedBacks">
+            <EntityTypeMapping TypeName="SKRechargeModel.FeedBack">
+              <MappingFragment StoreEntitySet="FeedBack">
+                <ScalarProperty Name="FeedbackID" ColumnName="FeedbackID" />
+                <ScalarProperty Name="Damagetype" ColumnName="Damagetype" />
+                <ScalarProperty Name="PileId" ColumnName="PileId" />
+                <ScalarProperty Name="EngineerReback" ColumnName="EngineerReback" />
+                <ScalarProperty Name="Occupiedtype" ColumnName="Occupiedtype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LiuYans">
+            <EntityTypeMapping TypeName="SKRechargeModel.LiuYan">
+              <MappingFragment StoreEntitySet="LiuYan">
+                <ScalarProperty Name="LiuYanID" ColumnName="LiuYanID" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LogInfoes">
+            <EntityTypeMapping TypeName="SKRechargeModel.LogInfo">
+              <MappingFragment StoreEntitySet="LogInfo">
+                <ScalarProperty Name="LogID" ColumnName="LogID" />
+                <ScalarProperty Name="EPC" ColumnName="EPC" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="InTIME" ColumnName="InTIME" />
+                <ScalarProperty Name="OutTime" ColumnName="OutTime" />
+                <ScalarProperty Name="UsageTime" ColumnName="UsageTime" />
+                <ScalarProperty Name="PaySum" ColumnName="PaySum" />
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+                <ScalarProperty Name="PileID" ColumnName="PileID" />
+                <ScalarProperty Name="UserFrequence" ColumnName="UserFrequence" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="PriceRate" ColumnName="PriceRate" />
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PileInfoes">
+            <EntityTypeMapping TypeName="SKRechargeModel.PileInfo">
+              <MappingFragment StoreEntitySet="PileInfo">
+                <ScalarProperty Name="DistrictID" ColumnName="DistrictID" />
+                <ScalarProperty Name="PileID" ColumnName="PileID" />
+                <ScalarProperty Name="OccupiedType" ColumnName="OccupiedType" />
+                <ScalarProperty Name="ChargingType" ColumnName="ChargingType" />
+                <ScalarProperty Name="DamagedType" ColumnName="DamagedType" />
+                <ScalarProperty Name="UsageTimes" ColumnName="UsageTimes" />
+                <ScalarProperty Name="BuildingID" ColumnName="BuildingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RFIDInfoes">
+            <EntityTypeMapping TypeName="SKRechargeModel.RFIDInfo">
+              <MappingFragment StoreEntitySet="RFIDInfo">
+                <ScalarProperty Name="TID" ColumnName="TID" />
+                <ScalarProperty Name="EPC" ColumnName="EPC" />
+                <ScalarProperty Name="User" ColumnName="User" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserBalances">
+            <EntityTypeMapping TypeName="SKRechargeModel.UserBalance">
+              <MappingFragment StoreEntitySet="UserBalance">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="TotalBill" ColumnName="TotalBill" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserBasics">
+            <EntityTypeMapping TypeName="SKRechargeModel.UserBasic">
+              <MappingFragment StoreEntitySet="UserBasic">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="EPC" ColumnName="EPC" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="RegTime" ColumnName="RegTime" />
+                <ScalarProperty Name="UserImage" ColumnName="UserImage" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

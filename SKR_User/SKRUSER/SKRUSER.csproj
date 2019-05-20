@@ -169,23 +169,59 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\PileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AdminBasic.cs" />
-    <Compile Include="Models\BuildingInfo.cs" />
-    <Compile Include="Models\FeedBack.cs" />
-    <Compile Include="Models\LiuYan.cs" />
-    <Compile Include="Models\LogInfo.cs" />
-    <Compile Include="Models\logrfid.cs" />
-    <Compile Include="Models\PileInfo.cs" />
-    <Compile Include="Models\RFIDInfo.cs" />
-    <Compile Include="Models\SKRDB.cs" />
-    <Compile Include="Models\UserBalance.cs" />
-    <Compile Include="Models\UserBasic.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdminBasic.cs">
+      <DependentUpon>SKRentity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BuildingInfo.cs">
+      <DependentUpon>SKRentity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FeedBack.cs">
+      <DependentUpon>SKRentity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LiuYan.cs">
+      <DependentUpon>SKRentity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LogInfo.cs">
+      <DependentUpon>SKRentity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\logrfid.cs">
+      <DependentUpon>SKRentity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PileInfo.cs">
+      <DependentUpon>SKRentity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\RFIDInfo.cs">
+      <DependentUpon>SKRentity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SKRentity.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SKRentity.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SKRentity.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SKRentity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SKRentity.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SKRentity.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserBalance.cs">
+      <DependentUpon>SKRentity.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserBasic.cs">
+      <DependentUpon>SKRentity.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -200,8 +236,25 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Models\SKRentity.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SKRentity.edmx</DependentUpon>
+      <LastGenOutput>SKRentity.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SKRentity.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SKRentity.edmx</DependentUpon>
+      <LastGenOutput>SKRentity.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\SKRentity.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SKRentity.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\SKRentity.edmx.diagram">
+      <DependentUpon>SKRentity.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -240,31 +293,14 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ForgotPassword.cshtml" />
-    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ResetPassword.cshtml" />
-    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
-    <Content Include="Views\Account\SendCode.cshtml" />
-    <Content Include="Views\Account\VerifyCode.cshtml" />
-    <Content Include="Views\Manage\AddPhoneNumber.cshtml" />
-    <Content Include="Views\Manage\ChangePassword.cshtml" />
-    <Content Include="Views\Manage\Index.cshtml" />
-    <Content Include="Views\Manage\ManageLogins.cshtml" />
-    <Content Include="Views\Manage\SetPassword.cshtml" />
-    <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Pile\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -273,6 +309,7 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
